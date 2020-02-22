@@ -6,6 +6,7 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.compose import make_column_transformer
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import confusion_matrix, classification_report
 import keras
 from keras.models import Sequential
 from keras.layers import Dense
@@ -39,8 +40,6 @@ X_train_1 = sc_X.fit_transform(X_train)
 X_test_1 = sc_X.transform(X_test)
 print()
 
-
-
 classifier = Sequential()
 classifier.add(Dense(6, kernel_initializer='uniform', activation='relu', input_dim=11))
 classifier.add(Dense(6, kernel_initializer='uniform', activation='relu'))
@@ -49,7 +48,5 @@ classifier.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accur
 classifier.fit(X_train, y_train, batch_size=10, nb_epoch=100)
 y_pred = classifier.predict(X_test)
 y_pred_1 = (y_pred > 0.5)
-
-from sklearn.metrics import confusion_matrix, classification_report
 
 confusion_matrix(y_test, y_pred)
