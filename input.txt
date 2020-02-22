@@ -1,0 +1,3 @@
+https://www.washingtonpost.com/
+https://tw.news.yahoo.com/
+https://www.quora.com/In-Keras-what-is-a-dense-and-a-dropout-layer
