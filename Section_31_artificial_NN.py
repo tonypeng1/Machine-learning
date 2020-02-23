@@ -38,15 +38,17 @@ X_train, X_test, y_train, y_test = train_test_split(X_1, y, test_size=0.2, rando
 sc_X = StandardScaler()
 X_train_1 = sc_X.fit_transform(X_train)
 X_test_1 = sc_X.transform(X_test)
-print()
 
 classifier = Sequential()
 classifier.add(Dense(6, kernel_initializer='uniform', activation='relu', input_dim=11))
 classifier.add(Dense(6, kernel_initializer='uniform', activation='relu'))
 classifier.add(Dense(1, kernel_initializer='uniform', activation='sigmoid'))
 classifier.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
-classifier.fit(X_train, y_train, batch_size=10, nb_epoch=100)
-y_pred = classifier.predict(X_test)
+classifier.fit(X_train_1, y_train, batch_size=10, nb_epoch=100, verbose=2)
+
+y_pred = classifier.predict(X_test_1)
 y_pred_1 = (y_pred > 0.5)
 
-confusion_matrix(y_test, y_pred)
+confusion_matrix(y_test, y_pred_1)
+print(classification_report(y_test, y_pred_1))
+print()
